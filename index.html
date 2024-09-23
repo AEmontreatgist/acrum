@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w2.org/1999/xhtml">
+<html lang="en">
+    <head>
+	<meta name="generator" content="Hugo 0.134.2">
+            <meta charset="utf-8" />
+    <title>ACRUM </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ACRUMS Customer Portal">
+    <meta property="og:title" content="ACRUM" />
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://example.com/" />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href=""/>
+    <link rel="canonical" href="https://example.com/" />    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.42.2/js/jquery.terminal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/less.min.js"></script>
+    <script src="https://unpkg.com/jquery.terminal/js/autocomplete_menu.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.42.0/css/jquery.terminal.min.css" rel="stylesheet"/>
+
+    <style>
+        body {
+            width: 100%;
+            font-size: 18px;
+        }
+    </style>
+    
+
+    </head>
+        <body>
+        
+<script> 
+jQuery(document).ready(function($) {
+    var animation = false;
+
+    var commands = {
+        help: "shows help",
+        less: "Use less as output method",
+        whois: "list basic details",
+        social: "list social networks",
+        work: "list work experience",
+        education: "list education",
+        skills: "list core skills",
+        softskills: "list soft skills",
+        languages: "list spoken languages",
+        projects: "list projects",
+         
+            certifications: "list certifications",
+        
+        
+        
+            "newcommand": "This Section can have a different command name",
+        
+        
+        
+            version: "Current version",
+        
+        
+            exit: "exit the terminal",
+        
+        all: "Show all details",
+    };
+
+    function progressBar(number) {
+        var barLength = Math.round(number / 10);
+        var barFilled = Array(barLength + 1).join("&#9611;");
+        var barBlank= Array(11 - barLength).join("&#9617;");
+
+        return barFilled + barBlank
+    }
+
+    
+    function padKey(key, length) {
+        return key + ' '.repeat(length - key.length);
+    }
+
+    function commandsHelp() {
+        let longestKeyLength = Math.max(...Object.keys(commands).map(key => key.length));
+
+        let helpText = ""
+        for (let key in commands) {
+            if (commands.hasOwnProperty(key)) {
+                helpText += ` ${padKey(key, longestKeyLength)}\t${commands[key]}\n`
+            }
+        }
+        return helpText
+    }
+
+    var help = '\n[[b;white;]usage:]\n' +
+                '\n <command> - execute the command\n' +
+                ' less <command> - use less to display the output\n\n' +
+                '\n[[b;white;]Available commands:]\n' + 
+               commandsHelp();
+
+    var whois = [
+     
+        '[[b;grey;]Name:]\t\t\tguest\n' + 
+        '[[b;grey;]Profession:]\t\tUnknown\n' +
+        '[[b;grey;]Location:]\t\tSomewhere\n' +
+        
+        '[[b;grey;]Email:]\t\t\tguest@guest.org\n' +
+        
+        
+        '[[b;grey;]Homepage:]\t\there\n' +
+        
+        
+        'A valuable customer for ACRUM\n' +
+        
+        '\r',
+    
+    ];
+
+    function social() { 
+        var hideName = false;
+        let sMap = { 
+             
+                
+                "Redacted": "https:\/\/youtu.be\/dQw4w9WgXcQ?feature=shared",
+                
+            
+        };
+
+        
+        socialText = []
+        for (let key in sMap) {
+            if (sMap.hasOwnProperty(key)) {
+                if (hideName) {
+                    socialText.push(sMap[key]);
+                } else { 
+                    let longestKeyLength = Math.max(...Object.keys(sMap).map(key => key.length));
+                    socialText.push(`${padKey(key, longestKeyLength)}\t${sMap[key]}`)
+                };
+            }
+        }
+
+        return socialText
+    }
+
+    var certifications = [
+    
+        
+            '---\n' +
+            '[[b;grey;]CUERA (Certified Un-Ethical Repossession Agent)]\n' +
+            'Open\n' +
+            
+            'ACRUM\n' +
+            
+            
+            
+            'Badge: \thttps:\/\/youtu.be\/BsIa_LKojJI?feature=shared\n' +
+            
+            '\r',
+        
+    
+    ];
+    
+    var work = [
+    
+        
+            '---\n' +
+            '[[b;green;]Finance Agent]\n' +
+            '-\n' +
+            'ACRUM\n' +
+            'Hiring\n' +
+            '\n' +
+            'Our Finance Agemts manage internal and our customers finances' +
+            '\r',
+        
+            '---\n' +
+            '[[b;purple;]Loacte Agent]\n' +
+            '-\n' +
+            'ACRUM\n' +
+            'Not Hiring\n' +
+            '\n' +
+            'A specialized department in locateing people who default on their contracts' +
+            '\r',
+        
+            '---\n' +
+            '[[b;red;]Repossession Agent]\n' +
+            '-\n' +
+            'ACRUM\n' +
+            'Not Hiring\n' +
+            '\n' +
+            'Reclaims the assets of our company. Unnecessary Force is Authorized' +
+            '\r',
+        
+    
+    ];
+
+    var education = [
+    
+        
+            '---\n' +
+            '[[b;red;]Finance Agent training]\n' +
+            'Open\n' +
+            
+                "Descrption about red color trianing\n" +
+            
+            "\r",
+        
+            '---\n' +
+            '[[b;grey;]Locate Agent training]\n' +
+            'Open\n' +
+            
+            "\r",
+        
+    
+    ];
+
+    var projects = [
+    
+        
+            '---\n' +
+            '[[b;red;]Tax Payer Mind Control Initiative]\n' +
+            'since 2019\n' +
+            'https:\/\/example.com\n' +
+            
+            'Describing red stuff\n' +
+            
+            "\r",
+      
+            '---\n' +
+            '[[b;blue;]Drone Surveillance Program]\n' +
+            'since 2016\n' +
+            'https:\/\/example.com\/blue\n' +
+            
+            "\r",
+      
+            '---\n' +
+            '[[b;purple;]Genetic Telepathy Initiative]\n' +
+            'Since 2017\n' +
+            'https:\/\/example.com\/default\n' +
+            
+            "\r",
+      
+    
+    ];
+
+    var skills = [
+    
+        
+            '[[b;green;]Finances:]\n' +
+            progressBar( 100 ) +
+            '100' + '%\n' +
+            
+            '\r',
+        
+            '[[b;purple;]Location:]\n' +
+            progressBar( 100 ) +
+            '100' + '%\n' +
+            
+            '\r',
+        
+            '[[b;red;]Repossession:]\n' +
+            progressBar( 100 ) +
+            '100' + '%\n' +
+            
+            '\r',
+        
+    
+    ];
+
+    var softSkills = [
+    
+        
+            '[[b;red;]Targeting the Free:]\n' +
+            progressBar( 86 ) +
+            '86' + '%\n' + 
+            
+            '\r',
+        
+            '[[b;grey;]Targeting those who have wronged the company:]\n' +
+            progressBar( 100 ) +
+            '100' + '%\n' + 
+            
+            '\r',
+        
+    
+    ];
+  
+    var languages = [
+    
+        
+            '[[b;Blue;]English:]\n' +
+            progressBar( 100 )+ 
+            '100' + '%\n' +
+            
+            '\r',
+        
+            '[[b;red;]Far Speach:]\n' +
+            progressBar( 100 )+ 
+            '100' + '%\n' +
+            
+            'Toki\n' +
+            
+            '\r',
+        
+            '[[b;purple;]Deep Speech:]\n' +
+            progressBar( 50 )+ 
+            '50' + '%\n' +
+            
+            'ar old ones Le raise nehel from tel’ depths\n' +
+            
+            '\r',
+        
+    
+    ];
+
+    var misc = [
+         
+        '[[b;teal;]This Section can have a different command name]\n' +
+        '[[;orange;]Here the title and the content can have different colors\nThe content can be multi\n\nline\n\nAnd spaces       will be respected as well\nThis section will have the default command: misc\nbut you can name it something else with the property\ncommandName: \u003cString\u003e\nGive it a shot and try and uncomment the line \ncommandName: newcommand\nnow instead of misc you can execute the newcommand for this section\nAuto completion will know it too! :D \n]\n',
+         
+    ];
+
+    var source =  '        _______            \n' +
+                  '       |       |           \n' +
+                  '       |       |           \n' +
+                  '       |_______|_______    \n' +
+                  '               |       |   \n' +
+                  '               |       |   \n' +
+                  ' ______________|_______|   \n' +
+                  '|      |       |       |   \n' +
+                  '|      |       |       |   \n' +
+                  '|______|_______|_______|   \n' +
+                  '[[;red;]May the source be with you]\n' +
+                  '[[;grey;]https://github.com/coolapso/hugo-theme-terminalcv\n';
+
+    var all = [ 
+        whois,
+        social(),
+        work,
+        education,
+        skills,
+        softSkills,
+        languages,
+        projects,
+        certifications,
+        misc,
+        
+        
+        
+        source,
+        
+    ]
+
+    $('body').terminal(function(command, term) {
+
+        var useLess = false;
+        
+
+        function echoArray(array) {
+            if (useLess) {
+                term.less(array);
+            } else {
+                for (i = 0; i < array.length; i += 1) {
+                    term.echo(array[i]);
+                }
+            }
+        }
+        
+        function progress(percent, width) {
+            var size = Math.round(width*percent/100);
+            var left = '', taken = '', i;
+            for (i=size; i--;) {
+                taken += '=';
+            }
+            if (taken.length > 0) {
+                taken = taken.replace(/=$/, '>');
+            }
+            for (i=width-size; i--;) {
+                left += ' ';
+            }
+            return '[' + taken + left + '] ' + percent + '%';
+        }
+
+        function loading () {
+            var i = 0, size = 30;
+            prompt = term.get_prompt();
+            string = progress(0, size);
+            term.set_prompt(progress);
+            animation = true;
+            (function loop() {
+                string = progress(i++, size);
+                term.set_prompt(string);
+                if (i < 100) {
+                    timer = setTimeout(loop, 10);
+                } else {
+                    term.echo(progress(i, size) + ' [[b;green;]OK]').set_prompt(prompt);
+                    animation = false
+                }
+            })();
+        }
+
+        commands = command.split(/[ ]+/);
+        if (commands[0] == 'less') {
+            useLess = true;
+            commands.shift();
+        } 
+                    
+        switch(commands[0]) {
+            case 'whois':
+                
+                echoArray(whois);
+                break;
+            case 'social':
+                
+                echoArray(social());
+                break;
+            case 'work':
+                
+                echoArray(work);
+                break;
+            case 'education':
+                
+                echoArray(education);
+                break;
+            case 'skills':
+                
+                useLess = true;
+                
+                echoArray(skills);
+                break;
+            case 'softskills':
+                
+                echoArray(softSkills);
+                break;
+            case 'languages':
+                
+                echoArray(languages);
+                break;
+            case 'projects':
+                
+                echoArray(projects);
+                break;
+            case 'certifications':
+                
+                term.echo(certifications);
+                break;
+            case 'newcommand':
+                
+                echoArray(misc);
+                break;
+            case 'help':
+            case '?':
+                term.echo(help);
+                break;
+            case 'all':
+                
+                echoArray(all.flat(1));
+                break;
+            
+            case ':(){:|:&};:':
+                term.echo("nice try");
+                break;
+            case 'source':
+                
+                term.echo(source);
+                break;
+            
+            case 'exit':
+                term.echo("terminating ... ")
+                loading();
+                setTimeout(function(){window.location = 'about:blank'}, 2000);
+                break;
+            
+            
+            case 'version':
+                term.echo("9.6.5");
+                break;
+            
+            case '':
+                break;
+            default:
+                term.echo("\nunknown command: " + command + "\n" +
+                          "please type 'help' or '?' for a list of available commands\n");
+        }
+    }, {
+        prompt: '[[;red;][][[;pink;]guest@acrum][[;red;]\\]][[;grey;]-][[;red;][][[;blue;]~\/acrum][[;red;]\\]][[;orange;]: ]',
+        greetings: "[[b;white;]______________________________________________________________________________        \n______________________________________________________________________________       \n  ______________________________________________________________________________      \n  __\/\\\\\\\\\\\\\\\\\\________\/\\\\\\\\\\\\\\\\__\/\\\\\/\\\\\\\\\\\\\\___\/\\\\\\____\/\\\\\\____\/\\\\\\\\\\__\/\\\\\\\\\\___     \n    _\\\/\/\/\/\/\/\/\/\\\\\\_____\/\\\\\\\/\/\/\/\/\/__\\\/\\\\\\\/\/\/\/\/\\\\\\_\\\/\\\\\\___\\\/\\\\\\__\/\\\\\\\/\/\/\\\\\\\\\\\/\/\/\\\\\\_    \n    ___\/\\\\\\\\\\\\\\\\\\\\___\/\\\\\\_________\\\/\\\\\\___\\\/\/\/__\\\/\\\\\\___\\\/\\\\\\_\\\/\\\\\\_\\\/\/\\\\\\__\\\/\\\\\\_   \n      __\/\\\\\\\/\/\/\/\/\\\\\\__\\\/\/\\\\\\________\\\/\\\\\\_________\\\/\\\\\\___\\\/\\\\\\_\\\/\\\\\\__\\\/\\\\\\__\\\/\\\\\\_  \n      _\\\/\/\\\\\\\\\\\\\\\\\/\\\\__\\\/\/\/\\\\\\\\\\\\\\\\_\\\/\\\\\\_________\\\/\/\\\\\\\\\\\\\\\\\\__\\\/\\\\\\__\\\/\\\\\\__\\\/\\\\\\_ \n        __\\\/\/\/\/\/\/\/\/\\\/\/_____\\\/\/\/\/\/\/\/\/__\\\/\/\/___________\\\/\/\/\/\/\/\/\/\/___\\\/\/\/___\\\/\/\/___\\\/\/\/__\n\nWelcome to ACRUM\nWhere your assets are our assetsjob\n\nType \u0027help\u0027 for a list of available commands\n]",
+
+        keydown: function(e, term) {
+            if (animation) {
+                if (e.which == 68 && e.ctrlKey) { 
+                    clearTimeout(timer);
+                    animation = false;
+                    term.echo(string + ' [[b;red;]FAIL]')
+                    .set_prompt(prompt);
+                }
+                return false;
+            }
+        },
+        autocompleteMenu: true,
+        completion: Object.keys(commands)
+        
+    });
+});
+</script>
+
+        </body>
+</html>
